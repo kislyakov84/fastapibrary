@@ -1,8 +1,8 @@
-"""Initial migration
+"""Fix book-author relationship
 
-Revision ID: db8a35301469
+Revision ID: 9d60b9af73fc
 Revises: 
-Create Date: 2025-01-16 17:37:56.233868
+Create Date: 2025-01-18 20:14:02.572780
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'db8a35301469'
+revision: str = '9d60b9af73fc'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None

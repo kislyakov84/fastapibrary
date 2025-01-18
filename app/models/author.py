@@ -7,8 +7,9 @@ class Author(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    biogarphy = Column(String)
+    biography = Column(String)
     birth_date = Column(Date)
     
-    books = relationship("Book", secondary="book_author", back_populates="author") 
+    # Связь с книгами через таблицу book_author
+    books = relationship("Book", secondary="book_author", back_populates="authors") 
     
