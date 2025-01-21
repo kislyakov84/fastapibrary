@@ -22,8 +22,13 @@ def create_book(
     return new_book
 
 @router.get("/", response_model=list[BookResponse])
-def get_books(db: Session = Depends(get_db)):
-    return db.query(Book).all()
+def get_books(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return db.query(Book).offset(skip).limit(limit).all()
+
+@router.get("/search/")
+def search_books(title: str, db: Session = Depends(get_db)):
+    return db.query(Book).filter(Book.title.ilike(f"%{title}%")).all()
+
 
 @router.get("/{book_id}", response_model=list[BookResponse])
 def get_book(book_id:int, db: Session = Depends(get_db)):
