@@ -21,3 +21,6 @@ class Book(Base):
     
     # Связь с авторами через таблицу book_author
     authors = relationship("Author", secondary=book_author, back_populates="books")
+    
+    loans = relationship("Loan", back_populates="book")
+    
