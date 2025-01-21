@@ -4,7 +4,7 @@ from app.models import book
 from app.models.book import Book
 from app.schemas.book import BookCreate, BookResponse, BookUpdate
 from app.api.database import get_db
-from app.api.security import get_current_user
+from app.api.security import admin_required, get_current_user
 from app.models.user import User
 
 router = APIRouter()
@@ -13,7 +13,7 @@ router = APIRouter()
 def create_book(
     book: BookCreate, 
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(admin_required),
 ):
     new_book = Book(**book.dict())
     db.add(new_book)
