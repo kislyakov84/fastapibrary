@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import relationship
 from app.api.database import Base
-
+from app.models.book import book_author  # Импортируем связь "многие ко многим"
+ 
 class Author(Base):
     __tablename__ = "authors"
     

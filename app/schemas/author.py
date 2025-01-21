@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
-from typing import Optional
+from typing import Optional, List
+from app.schemas.book import BookResponse
 
 class AuthorBase(BaseModel):
     name: str
@@ -10,8 +11,15 @@ class AuthorBase(BaseModel):
 class AuthorCreate(AuthorBase):
     pass
 
+class AuthorCreate(AuthorBase):
+    pass
+
+class AuthorUpdate(AuthorBase):
+    pass
+
 class AuthorResponse(AuthorBase):
     id: int
+    books: List[BookResponse] = []
     
     class Config:
         orm_mode = True
