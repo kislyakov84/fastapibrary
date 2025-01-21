@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from app.api.logging import log_action
 from app.models import book
 from app.models.book import Book
 from app.schemas.book import BookCreate, BookResponse, BookUpdate
@@ -15,6 +16,7 @@ def create_book(
     db: Session = Depends(get_db),
     current_user: User = Depends(admin_required),
 ):
+    log_action(current_user, f"Created book: {book.title}")
     new_book = Book(**book.dict())
     db.add(new_book)
     db.commit()
